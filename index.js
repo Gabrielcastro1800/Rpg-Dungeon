@@ -1,4 +1,5 @@
-window.onload = function(){
+addEventListener("load",function(){
+
 var c = document.getElementById("game")
 var c2 = c.getContext("2d")
 c2.imageSmoothingEnabled = false;
@@ -583,6 +584,4 @@ addEventListener("mousemove",function(){
  x = event.x 
  y = event.y
 })
-
-
-}
+}) 
