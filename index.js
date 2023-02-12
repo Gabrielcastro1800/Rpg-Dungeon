@@ -1,9 +1,10 @@
+
 var c = document.getElementById("game")
 var c2 = c.getContext("2d")
 c2.imageSmoothingEnabled = false;
 
 // variaveis \\
-var lixo = [0,0,0,0,0]
+var lixo = [0,0,0,0,0,0]
 var ivida = 10
 var idefesa = 1
 var iforca = 1
@@ -16,9 +17,9 @@ var forca = 1
 var forcamax = 1
 var nivel = 1
 var xp = 0
-var inventario = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+var inventario = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
 var loot = 0
-var itemsloja = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+var itemsloja = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
 var game = 2
 var inimigovida = 0
 var inimigoforca = 0
@@ -27,7 +28,7 @@ var turno = 0
 var cturno = 0
 var gold = 10
 var grap = false
-var mousei = [0,0,0]
+var mousei = [0,0,0,0,0,0,]
 var x = -100
 var y = -100
 var troca = []
@@ -73,6 +74,11 @@ items[4] = new Image()
 items[4].src = "imgs/escudodeferro.png"
 items[5] = new Image()
 items[5].src = "imgs/potiondecura.png"
+items[6] = new Image()
+items[6].src = "imgs/potiondedefesa.png"
+items[7] = new Image()
+items[7].src = "imgs/potiondeforça.png"
+
 var numerodeitem = items.length
 var t = [[390,370],[430,370],[470,370],[390,410],[430,410],[470,410],[390,450],[430,450],[470,450]]
 var tshop =[[430,210],[480,210],[530,210]]
@@ -102,64 +108,82 @@ function levelup(){
 }
 function aleato(){
     au4 = 0
-    au3 = Math.ceil(Math.random()* 19)
+    au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira"]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara"]
+        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro"]
+        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira"]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro"]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Cura",5,"Poção de cura"]
+        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+    }
+    if(au3 == 20 || au3 == 21 || au3 == 22){
+        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+    }
+    if(au3 == 23 || au3 == 24){
+        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
     }
     au4 = 1
-    au3 = Math.ceil(Math.random()* 19)
+    au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira"]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara"]
+        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro"]
+        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira"]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro"]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Cura",5,"Poção de cura"]
+        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+    }
+    if(au3 == 20 || au3 == 21 || au3 == 22){
+        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+    }
+    if(au3 == 23 || au3 == 24){
+        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
     }
     au4 = 2
-    au3 = Math.ceil(Math.random()* 19)
+    au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira"]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara"]
+        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro"]
+        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira"]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro"]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Cura",5,"Poção de cura"]
+        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+    }
+    if(au3 == 20 || au3 == 21 || au3 == 22){
+        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+    }
+    if(au3 == 23 || au3 == 24){
+        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
     }
 
 
@@ -171,15 +195,9 @@ function gameloop(){
         alert("ERRO GOLD")
     }
     c2.clearRect(0,0,1000,1000)
-    if(equi[0][0] == 0){
-        forca = forcamax
-
-    }
-    if(equi[2][0] == 0){
-        defesa = defesamax
-
-    }
+    
     if(game == 3){
+
         if(aleau == 0){
             aleato()
             aleau = 1
@@ -228,6 +246,14 @@ function gameloop(){
         
     }
     if(game == 2){
+        if(equi[0][0] == 0){
+            forca = forcamax
+    
+        }
+        if(equi[2][0] == 0){
+            defesa = defesamax
+    
+        }
         if(xp >100)
         {
             levelup()
@@ -521,20 +547,38 @@ addEventListener("click",function(){
                     defesa = defesamax
                     defesa += equi[2][1]
                 }}
-                if(event.x > equipamentos[0][0]+50 && event.x < equipamentos[0][0]+40+50 && event.y > equipamentos[0][1] && event.y < equipamentos[0][1]+40 && mousei[2] == "Cura" || event.x > equipamentos[0][0] && event.x < equipamentos[0][0]+40 && event.y > equipamentos[0][1] && event.y < equipamentos[0][1]+40 && mousei[0] == 0 && game == 1){
+                if(event.x > 150+50 && event.x < 150+40+50 && event.y > 370 && event.y < 370+40){
+                    if(mousei[2] == "Curamagica"){ 
                     troca = equi[1]
                     equi[1] = mousei
                     mousei = troca
                     vida+=equi[1][1]
-                    equi[1] = lixo
+                    equi[1] = lixo}
+
+                    
+                    if(mousei[2] == "DefesaMagica"){ 
+                        troca = equi[1]
+                        equi[1] = mousei
+                        mousei = troca
+                        defesa+=equi[1][1]
+                        equi[1] = lixo}
+                        
+                    if(mousei[2] == "Ataquemagico"){ 
+                        troca = equi[1]
+                        equi[1] = mousei
+                        mousei = troca
+                        forca+=equi[1][1]
+                        equi[1] = lixo}
+                        
+                        }
                     }
             
-
+                    
             
     
     
 
-})
+)
 addEventListener("mousemove",function(){
  x = event.x 
  y = event.y
