@@ -5,6 +5,7 @@ var c2 = c.getContext("2d")
 c2.imageSmoothingEnabled = false;
 
 // variaveis \\
+var roudx = 0
 var lixo = [0,0,0,0,0,0]
 var vida = 10
 var maxvida = 10
@@ -23,7 +24,7 @@ var inimigoforca = 0
 var luta = 0
 var turno = 0
 var cturno = 0
-var gold = 10000
+var gold = 0
 var mousei = [0,0,0,0,0,0,]
 var x = -100
 var y = -100
@@ -78,6 +79,12 @@ items[6] = new Image()
 items[6].src = "imgs/potiondedefesa.png"
 items[7] = new Image()
 items[7].src = "imgs/potiondeforça.png"
+items[8] = new Image()
+items[8].src = "imgs/espadadeouro.png"
+items[9] = new Image()
+items[9].src = "imgs/espadadeourorara.png"
+items[10] = new Image()
+items[10].src = "imgs/escudodeferroraro.png"
 
 var numerodeitem = items.length
 var t = [[390,370],[430,370],[470,370],[390,410],[430,410],[470,410],[390,450],[430,450],[470,450]]
@@ -89,16 +96,16 @@ var equi = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
 // functions \\
 function inimigostats1(inimigovida)
 {
-   inimigovida = Math.ceil(Math.random() * nivel*(Math.random()*20)) + 5;
+   inimigovida = Math.ceil(Math.random()*roudx+3)
    return inimigovida;
 }
 function inimigostats2(inimigoforca)
 {
-   inimigoforca = Math.ceil(Math.random() * nivel)+Math.ceil(Math.random()*10)
+   inimigoforca = Math.ceil(Math.random()*roudx+2)
    return inimigoforca;
 }
 function levelup(){
-    maxvida+=2
+    maxvida+=10
     forca+=1
     defesa+=1
     nivel+=1
@@ -108,7 +115,7 @@ function levelup(){
 }
 function aleato(){
     au4 = 0
-    au3 = Math.ceil(Math.random()* 24)
+    au3 = Math.ceil(Math.random()* 28)
     if(au3 == 1 || au3 == 2 || au3 == 3){
         itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
@@ -122,19 +129,28 @@ function aleato(){
         itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+        itemsloja[au4] = [6,10,"Curamagica",10,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
+        itemsloja[au4] = [7,5,"DefesaMagica",45,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
+        itemsloja[au4] = [8,3,"Ataquemagico",50,"Poção de Aumento de força",100]
+    }
+    if(au3 == 25){
+        itemsloja[au4] = [9,40,"Ataque",255,"Espada de ouro",80]
+    }
+    if(au3 == 26){
+        itemsloja[au4] = [10,45,"Ataque",305,"Espada de ouro rara",140]
+    }
+    if(au3 == 27 || au3 == 28){
+        itemsloja[au4] = [11,16,"Defesa",80,"Escudo de ferro raro",32]
     }
     au4 = 1
-    au3 = Math.ceil(Math.random()* 24)
+    au3 = Math.ceil(Math.random()* 28)
     if(au3 == 1 || au3 == 2 || au3 == 3){
         itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
@@ -148,19 +164,28 @@ function aleato(){
         itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+        itemsloja[au4] = [6,10,"Curamagica",10,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
+        itemsloja[au4] = [7,5,"DefesaMagica",45,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
+        itemsloja[au4] = [8,3,"Ataquemagico",50,"Poção de Aumento de força",100]
+    }
+    if(au3 == 25){
+        itemsloja[au4] = [9,40,"Ataque",255,"Espada de ouro",80]
+    }
+    if(au3 == 26){
+        itemsloja[au4] = [10,45,"Ataque",305,"Espada de ouro rara",140]
+    }
+    if(au3 == 27 || au3 == 28){
+        itemsloja[au4] = [11,16,"Defesa",80,"Escudo de ferro raro",32]
     }
     au4 = 2
-    au3 = Math.ceil(Math.random()* 24)
+    au3 = Math.ceil(Math.random()* 28)
     if(au3 == 1 || au3 == 2 || au3 == 3){
         itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
@@ -174,18 +199,26 @@ function aleato(){
         itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
+        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
-        itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
+        itemsloja[au4] = [6,10,"Curamagica",10,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
+        itemsloja[au4] = [7,5,"DefesaMagica",45,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
+        itemsloja[au4] = [8,3,"Ataquemagico",50,"Poção de Aumento de força",100]
     }
-
+    if(au3 == 25){
+        itemsloja[au4] = [9,40,"Ataque",255,"Espada de ouro",80]
+    }
+    if(au3 == 26){
+        itemsloja[au4] = [10,45,"Ataque",305,"Espada de ouro rara",140]
+    }
+    if(au3 == 27 || au3 == 28){
+        itemsloja[au4] = [11,16,"Defesa",80,"Escudo de ferro raro",32]
+    }
 }
 // functions \\
 // funçao loop \\
@@ -196,6 +229,7 @@ function gameloop(){
     c2.clearRect(0,0,1000,1000)
     
     if(game == 3){
+        vida = maxvida
 
         if(aleau == 0){
             aleato()
@@ -245,6 +279,8 @@ function gameloop(){
         
     }
     if(game == 2){
+        vida = maxvida
+
         if(equi[0][0] == 0){
             forca = forcamax
     
@@ -264,6 +300,14 @@ function gameloop(){
         vida = maxvida
     }
     if(game == 1){
+        if(equi[0][0] == 0){
+            forca = forcamax
+    
+        }
+        if(equi[2][0] == 0){
+            defesa = defesamax
+    
+        }
         if(luta == 0){
             inimigovida = inimigostats1(inimigovida)
             inimigoforca = inimigostats2(inimigoforca)
@@ -291,6 +335,7 @@ function gameloop(){
             ]
             if(inimigovida <= 0){
                 game = 2
+                roudx +=1
                 xp +=10
                 gold = gold+Math.ceil(Math.random()*10)
             }turno = 0
@@ -298,6 +343,7 @@ function gameloop(){
             }
             if(vida <= 0){
                 game = 2
+                roudx +=1
             }
             }
         
@@ -468,6 +514,14 @@ addEventListener("click",function(){
         }
         //shop
         if(game == 3){
+            if(equi[0][0] == 0){
+                forca = forcamax
+        
+            }
+            if(equi[2][0] == 0){
+                defesa = defesamax
+        
+            }
         if(event.x > tshop[0][0] && event.x <  tshop[0][0]+40 && event.y >  tshop[0][1] && event.y <  tshop[0][1]+40 && mousei[0] == 0 && gold >= itemsloja[0][3] && game == 3){
             troca = itemsloja[0]
             itemsloja[0] = mousei
@@ -620,7 +674,7 @@ addEventListener("click",function(){
                 if(x > 600 && x < 600+64 && y > 450 && y < 450+32){
                     if(mixgroup[0][2] == mixgroup[1][2] ){
 
-                    troca = mixgroup[0][1]+mixgroup[1][1]
+                    troca = mixgroup[0][1]+(Math.ceil(mixgroup[1][1]/2))
                     mixgroup[2] = mixgroup[0]
                     mixgroup[2][1] = troca
                     mixgroup[0] = lixo
@@ -635,7 +689,10 @@ addEventListener("click",function(){
                     mixgroup[2][1] = troca
                     mixgroup[0] = lixo
                     mixgroup[1] = lixo
-                    mixgroup[2][1] = mixgroup[2][5]
+                    if(mixgroup[2][1] > mixgroup[2][5])
+                    {
+                        mixgroup[2][1] = mixgroup[2][5]
+                    }
                 }
                 }
                     
