@@ -6,10 +6,6 @@ c2.imageSmoothingEnabled = false;
 
 // variaveis \\
 var lixo = [0,0,0,0,0,0]
-var ivida = 10
-var idefesa = 1
-var iforca = 1
-var inivel = 1
 var vida = 10
 var maxvida = 10
 var defesa = 1
@@ -19,16 +15,15 @@ var forcamax = 1
 var nivel = 1
 var xp = 0
 var inventario = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
-var loot = 0
 var itemsloja = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+var mixgroup = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 var game = 2
 var inimigovida = 0
 var inimigoforca = 0
 var luta = 0
 var turno = 0
 var cturno = 0
-var gold = 10
-var grap = false
+var gold = 10000
 var mousei = [0,0,0,0,0,0,]
 var x = -100
 var y = -100
@@ -63,6 +58,10 @@ var tescudo = new Image()
 tescudo.src = "imgs/telinhaescudo.png"
 var tpotion= new Image()
 tpotion.src ="imgs/telinhapotion.png"
+var mix = new Image()
+mix.src = "imgs/mix.png"
+var seta = new Image()
+seta.src = "imgs/seta.png"
 items[0] = new Image()
 items[0].src = "imgs/itemtest.png"
 items[1] = new Image()
@@ -111,82 +110,81 @@ function aleato(){
     au4 = 0
     au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
+        itemsloja[au4] = [2,20,"Ataque",180,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
+        itemsloja[au4] = [3,10,"Ataque",200,"Espada de ferro",50]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
+        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
         itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
+        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
     }
     au4 = 1
     au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
+        itemsloja[au4] = [2,20,"Ataque",180,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
+        itemsloja[au4] = [3,10,"Ataque",200,"Espada de ferro",50]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
+        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
         itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
+        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
     }
     au4 = 2
     au3 = Math.ceil(Math.random()* 24)
     if(au3 == 1 || au3 == 2 || au3 == 3){
-        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",10]
+        itemsloja[au4] = [1,5,"Ataque",10,"Espada de madeira",30]
     }
     if(au3 == 4 || au3 == 5){
-        itemsloja[au4] = [2,20,"Ataque",100,"Espada de madeira rara",45]
+        itemsloja[au4] = [2,20,"Ataque",180,"Espada de madeira rara",45]
     }
     if(au3 == 6 || au3 == 7 || au3 == 8){
-        itemsloja[au4] = [3,10,"Ataque",120,"Espada de ferro",20]
+        itemsloja[au4] = [3,10,"Ataque",200,"Espada de ferro",50]
     }
     if(au3 == 9 || au3 == 10 || au3 == 11){
-        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",10]
+        itemsloja[au4] = [4,4,"Defesa",8,"Escudo de madeira",25]
     }
     if(au3 == 12 || au3 == 13 || au3 == 14){
-        itemsloja[au4] = [5,8,"Defesa",50,"Escudo de ferro",10]
+        itemsloja[au4] = [5,8,"Defesa",233,"Escudo de ferro",30]
     }
     if(au3 == 15 || au3 == 16 || au3 == 17 || au3 == 18 || au3 == 19){
         itemsloja[au4] = [6,10,"Curamagica",5,"Poção de cura",30]
     }
     if(au3 == 20 || au3 == 21 || au3 == 22){
-        itemsloja[au4] = [7,5,"DefesaMagica",16,"Poção de defesa",12]
+        itemsloja[au4] = [7,5,"DefesaMagica",160,"Poção de defesa",120]
     }
     if(au3 == 23 || au3 == 24){
-        itemsloja[au4] = [8,3,"Ataquemagico",25,"Poção de Aumento de força",10]
+        itemsloja[au4] = [8,3,"Ataquemagico",250,"Poção de Aumento de força",100]
     }
-
 
 }
 // functions \\
@@ -224,21 +222,21 @@ function gameloop(){
             if(x > tshop[au2][0] && x < tshop[au2][0]+50 && y > tshop[au2][1] && y < tshop[au2][1]+50 && !(itemsloja[au2][0] == 0)){
                 c2.drawImage(telinha,x,y-50,128,64)
                 c2.fillText(itemsloja[au2][4], x+10, y-40,150);
-                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1], x+10, y-20,150);
+                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1]+"/"+itemsloja[au2][5], x+10, y-20,150);
                 c2.fillText("preço:"+itemsloja[au2][3], x+10, y,150);
             }
             au2 = 1
             if(x > tshop[au2][0] && x < tshop[au2][0]+50 && y > tshop[au2][1] && y < tshop[au2][1]+50 && !(itemsloja[au2][0] == 0)){
                 c2.drawImage(telinha,x,y-50,128,64)
                 c2.fillText(itemsloja[au2][4], x+10, y-40,150);
-                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1], x+10, y-20,150);
+                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1]+"/"+itemsloja[au2][5], x+10, y-20,150);
                 c2.fillText("preço:"+itemsloja[au2][3], x+10, y,150);
             }
             au2 = 2
             if(x > tshop[au2][0] && x < tshop[au2][0]+50 && y > tshop[au2][1] && y < tshop[au2][1]+50 && !(itemsloja[au2][0] == 0)){
                 c2.drawImage(telinha,x,y-50,128,64)
                 c2.fillText(itemsloja[au2][4], x+10, y-40,150);
-                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1], x+10, y-20,150);
+                c2.fillText(itemsloja[au2][2]+":"+itemsloja[au2][1]+"/"+itemsloja[au2][5], x+10, y-20,150);
                 c2.fillText("preço:"+itemsloja[au2][3], x+10, y,150);
             }
 
@@ -331,6 +329,20 @@ function gameloop(){
     c2.drawImage(telinha,430,450,40,40)//8
     c2.drawImage(telinha,470,410,40,40)//6
     c2.drawImage(telinha,470,450,40,40)//9
+    c2.drawImage(mix,600,450,64,32)
+    c2.drawImage(seta,695,400)
+    c2.drawImage(telinha,600,400,40,40)
+    if(!(mixgroup[0][0] == 0)){
+        c2.drawImage(items[(mixgroup[0][0])-1],600,400,32,32)
+    }
+    c2.drawImage(telinha,650,400,40,40)
+    if(!(mixgroup[1][0] == 0)){
+        c2.drawImage(items[(mixgroup[1][0])-1],650,400,32,32)
+    }
+    c2.drawImage(telinha,730,400,40,40)
+    if(!(mixgroup[2][0] == 0)){
+        c2.drawImage(items[(mixgroup[2][0])-1],730,400,32,32)
+    }
     c2.fillText("Vida:"+vida, 70, 380,150);
     c2.fillText("força:"+forca, 70, 400,150);
     c2.fillText("defesa:"+defesa, 70, 420,150);
@@ -370,63 +382,75 @@ function gameloop(){
     if(x > t[0][0] && x <  t[0][0]+40 && y >  t[0][1] && y <  t[0][1]+40 && !(inventario[0][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[0][4], x+10, y-40,150);
-        c2.fillText(inventario[0][2]+":"+inventario[0][1], x+10, y-20,150);
+        c2.fillText(inventario[0][2]+":"+inventario[0][1]+"/"+inventario[0][5], x+10, y-20,150);
     }
     if(x > t[1][0] && x <  t[1][0]+40 && y >  t[1][1] && y <  t[1][1]+40 && !(inventario[1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[1][4], x+10, y-40,150);
-        c2.fillText(inventario[1][2]+":"+inventario[1][1], x+10, y-20,150);
+        c2.fillText(inventario[1][2]+":"+inventario[1][1]+"/"+inventario[1][5], x+10, y-20,150);
     }
     au1 = 2
     if(x > t[au1][0] && x <  t[au1][0]+40 && y >  t[au1][1] && y <  t[au1][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     au1 = 3
     if(x > t[3][0] && x < t[3][0]+40 && y > t[3][1] && y < t[3][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     au1 = 4
     if(x > t[4][0] && x < t[4][0]+40 && y > t[4][1] && y < t[4][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     au1 = 5
     if(x > t[5][0] && x < t[5][0]+40 && y > t[5][1] && y < t[5][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
-    }
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
+        }
     au1 = 6
     if(x > t[6][0] && x < t[6][0]+40 && y > t[6][1] && y < t[6][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     au1 = 7
     if(x > t[7][0] && x < t[7][0]+40 && y > t[7][1] && y < t[7][1]+40 && !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     au1 = 8
     if(x > t[8][0] && x < t[8][0]+40 && y > t[8][1] && y < t[8][1]+40&& !(inventario[au1][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(inventario[au1][4], x+10, y-40,150);
-        c2.fillText(inventario[au1][2]+":"+inventario[au1][1], x+10, y-20,150);
+        c2.fillText(inventario[au1][2]+":"+inventario[au1][1]+"/"+inventario[au1][5], x+10, y-20,150);
     }
     if(x > equipamentos[0][0] && x < equipamentos[0][0]+40 && y > equipamentos[0][1] && y < equipamentos[0][1]+40 && !(equi[0][0] == 0)){
         c2.drawImage(telinha,x,y-50,128,64)
         c2.fillText(equi[0][4], x+10, y-40,150);
-        c2.fillText(equi[0][2]+":"+equi[0][1], x+10, y-20,150);}
+        c2.fillText(equi[0][2]+":"+equi[0][1]+"/"+equi[0][5], x+10, y-20,150);}
         if(x > 150 && x < 150+40 && y > 420 && y < 420+40  && !(equi[2][0] == 0)){
             c2.drawImage(telinha,x,y-50,128,64)
             c2.fillText(equi[2][4], x+10, y-40,150);
-            c2.fillText(equi[2][2]+":"+equi[2][1], x+10, y-20,150);}
+            c2.fillText(equi[2][2]+":"+equi[2][1]+"/"+equi[2][5], x+10, y-20,150);}
+            if(x > 600 && x < 600+40 && y > 400 && y < 400+40  && !(mixgroup[0][0] == 0)){
+                c2.drawImage(telinha,x,y-50,128,64)
+                c2.fillText(mixgroup[0][4], x+10, y-40,150);
+                c2.fillText(mixgroup[0][2]+":"+mixgroup[0][1]+"/"+mixgroup[0][5], x+10, y-20,150);}
+                if(x > 650 && x < 650+40 && y > 400 && y < 400+40  && !(mixgroup[1][0] == 0)){
+                    c2.drawImage(telinha,x,y-50,128,64)
+                    c2.fillText(mixgroup[1][4], x+10, y-40,150);
+                    c2.fillText(mixgroup[1][2]+":"+mixgroup[1][1]+"/"+mixgroup[1][5], x+10, y-20,150)};
+                    if(x > 730 && x < 730+40 && y > 400 && y < 400+40  && !(mixgroup[2][0] == 0)){
+                        c2.drawImage(telinha,x,y-50,128,64)
+                        c2.fillText(mixgroup[2][4], x+10, y-40,150);
+                        c2.fillText(mixgroup[2][2]+":"+mixgroup[2][1]+"/"+mixgroup[2][5], x+10, y-20,150)};
     requestAnimationFrame(gameloop)
 }
 gameloop()
@@ -572,16 +596,58 @@ addEventListener("click",function(){
                         equi[1] = lixo}
                         
                         }
+            
+
+
+                if(x > 600 && x < 600+40 && y > 400 && y < 400+40){
+                    troca = mixgroup[0]
+                    mixgroup[0] = mousei
+                    mousei = troca
+
+                }
+                if(x > 650 && x < 650+40 && y > 400 && y < 400+40){
+                    troca = mixgroup[1]
+                    mixgroup[1] = mousei
+                    mousei = troca
+
+                }
+                if(x > 730 && x < 730+40 && y > 400 && y < 400+40 && mousei[0] == 0){
+                    troca = mixgroup[2]
+                    mixgroup[2] = mousei
+                    mousei = troca
+
+                }
+                if(x > 600 && x < 600+64 && y > 450 && y < 450+32){
+                    if(mixgroup[0][2] == mixgroup[1][2] ){
+
+                    troca = mixgroup[0][1]+mixgroup[1][1]
+                    mixgroup[2] = mixgroup[0]
+                    mixgroup[2][1] = troca
+                    mixgroup[0] = lixo
+                    mixgroup[1] = lixo
+                    if(mixgroup[2][1] > mixgroup[2][5])
+                    {
+                        mixgroup[2][1] = mixgroup[2][5]
                     }
+                }else if(mixgroup[0][2] == "Ataque" && mixgroup[1][2] == "Ataquemagico" || mixgroup[0][2] == "Ataquemagico" && mixgroup[1][2] == "Ataque" || mixgroup[0][2] == "Defesa" && mixgroup[1][2] == "DefesaMagica" || mixgroup[0][2] == "DefesaMagica" && mixgroup[1][2] == "Defesa"){
+                    troca = mixgroup[0][1]+mixgroup[1][1]
+                    mixgroup[2] = mixgroup[0]
+                    mixgroup[2][1] = troca
+                    mixgroup[0] = lixo
+                    mixgroup[1] = lixo
+                    mixgroup[2][1] = mixgroup[2][5]
+                }
+                }
+                    
             
                     
             
     
     
 
-)
+            })
 addEventListener("mousemove",function(){
  x = event.x 
  y = event.y
 })
-}) 
+    })
